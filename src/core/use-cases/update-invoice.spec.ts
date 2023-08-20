@@ -1,32 +1,15 @@
 import {updateInvoice} from "@src/core/use-cases";
-import {mockedInvoice} from "@test-helper/types";
+import {mockedCreateInvoiceParams, mockedInvoice} from "@test-helper/types";
 
 const makeSut = () => {
 
   const updateInvoiceRepository = jest.fn().mockResolvedValue(mockedInvoice());
-  const mockedParams = () => ({
-    reference: 10,
-    accountId: 'any_account_id',
-    jobs: [{
-      description: 'any_description',
-      price: 1500.00
-    }],
-    bankInfo: {
-      bic: 'any_bic',
-      iban: 'any_iban',
-      fullName: 'any_name'
-    },
-    companyInfo: 'any_company_info',
-    companyName: 'any_company_name',
-    expiresIn: new Date(),
-    generatedAt: new Date()
-  })
 
   const sut = updateInvoice({updateInvoiceRepository})
 
   return {
     sut,
-    mockedParams,
+    mockedParams: mockedCreateInvoiceParams,
     updateInvoiceRepository,
     mockedInvoice
   }
