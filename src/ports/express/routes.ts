@@ -1,5 +1,9 @@
 import {Router} from "express";
-import {createInvoiceController, deleteInvoiceByIdController} from "@src/adapters/http/controllers";
+import {
+  createInvoiceController,
+  deleteInvoiceByIdController,
+  loadInvoiceByIdController
+} from "@src/adapters/http/controllers";
 import {Controller} from "@src/adapters/http/utils";
 
 const router = Router();
@@ -21,5 +25,14 @@ router.delete('/invoices/:id', async (req, res) => {
   const result = await deleteInvoiceByIdController(input)
   return res.status(result.status).json(result.body);
 })
+
+router.get('/invoices/:id', async (req, res) => {
+  const input: Controller.Input = {
+    body: req.body,
+    params: req.params
+  }
+  const result = await loadInvoiceByIdController(input);
+  return res.status(result.status).json(result.body);
+});
 
 export default router;
