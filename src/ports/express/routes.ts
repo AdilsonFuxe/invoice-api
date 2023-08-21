@@ -5,44 +5,17 @@ import {
   loadInvoiceByIdController,
   updateInvoiceController
 } from "@src/adapters/http/controllers";
-import {Controller} from "@src/adapters/http/utils";
+
+import {expressHttpAdapter} from "@src/adapters/http/express-http-adapter";
 
 const router = Router();
 
-router.post('/invoices', async (req, res) => {
-  const input: Controller.Input = {
-    body: req.body,
-    params: req.params
-  }
-  const result = await createInvoiceController(input);
-  return res.status(result.status).json(result.body);
-})
+router.post('/invoices', expressHttpAdapter(createInvoiceController))
 
-router.delete('/invoices/:id', async (req, res) => {
-  const input: Controller.Input = {
-    body: req.body,
-    params: req.params
-  }
-  const result = await deleteInvoiceByIdController(input)
-  return res.status(result.status).json(result.body);
-})
+router.delete('/invoices/:id', expressHttpAdapter(deleteInvoiceByIdController))
 
-router.get('/invoices/:id', async (req, res) => {
-  const input: Controller.Input = {
-    body: req.body,
-    params: req.params
-  }
-  const result = await loadInvoiceByIdController(input);
-  return res.status(result.status).json(result.body);
-});
+router.get('/invoices/:id', expressHttpAdapter(loadInvoiceByIdController));
 
-router.put('/invoices/:id', async (req, res) => {
-  const input: Controller.Input = {
-    body: req.body,
-    params: req.params
-  }
-  const result = await updateInvoiceController(input);
-  return res.status(result.status).json(result.body);
-});
+router.put('/invoices/:id', expressHttpAdapter(updateInvoiceController));
 
 export default router;
