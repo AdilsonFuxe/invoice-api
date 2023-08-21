@@ -5,7 +5,7 @@ const createInvoice: Controller = async (input) => {
   const result = await createInvoiceAdapter(input);
   return {
     body: result,
-    status: 200
+    status: 201
   }
 }
 
