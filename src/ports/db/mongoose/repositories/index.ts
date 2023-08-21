@@ -1,4 +1,4 @@
-import {CreateInvoice, DeleteInvoiceById, LoadAllInvoices, LoadInvoiceById} from '@src/core/use-cases';
+import {CreateInvoice, DeleteInvoiceById, LoadAllInvoices, LoadInvoiceById, UpdateInvoice} from '@src/core/use-cases';
 import {InvoiceModel} from "@src/ports/db/mongoose/model";
 import {MongoHelper} from "@src/ports/db/mongoose/helper";
 
@@ -19,5 +19,10 @@ export const loadAllInvoicesRepository: LoadAllInvoices = async (accountId) => {
 
 export const loadInvoiceByIdRepository: LoadInvoiceById = async (id) => {
   const result = await InvoiceModel.findById(id);
+  return MongoHelper.serialize(result);
+}
+
+export const updateInvoiceRepository: UpdateInvoice = async (id, params) => {
+  const result = await InvoiceModel.findByIdAndUpdate(id, params, {new: true});
   return MongoHelper.serialize(result);
 }
