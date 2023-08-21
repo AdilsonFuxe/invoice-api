@@ -1,12 +1,12 @@
-export type DeleteInvoice = (id: string) => Promise<void>
+export type DeleteInvoiceById = (id: string) => Promise<void>
 
 type Dependencies = {
-  deleteInvoiceRepository: DeleteInvoice
+  deleteInvoiceByIdRepository: DeleteInvoiceById
 }
 
-type BuildDeleteInvoice = (dependencies: Dependencies) => DeleteInvoice;
+type BuildDeleteInvoiceById = (dependencies: Dependencies) => DeleteInvoiceById;
 
-export const deleteInvoice: BuildDeleteInvoice = ({deleteInvoiceRepository}) =>
+export const deleteInvoiceById: BuildDeleteInvoiceById = ({deleteInvoiceByIdRepository}) =>
   async (id) => {
-    await deleteInvoiceRepository(id);
+    await deleteInvoiceByIdRepository(id);
   }

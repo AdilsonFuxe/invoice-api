@@ -1,22 +1,22 @@
-import {deleteInvoice} from "@src/core/use-cases";
+import {deleteInvoiceById} from "@src/core/use-cases";
 
 const makeSut = () => {
 
-  const deleteInvoiceRepository = jest.fn();
+  const deleteInvoiceByIdRepository = jest.fn();
 
-  const sut = deleteInvoice({deleteInvoiceRepository})
+  const sut = deleteInvoiceById({deleteInvoiceByIdRepository})
 
   return {
     sut,
-    deleteInvoiceRepository
+    deleteInvoiceByIdRepository
   }
 }
 
 describe("Delete Invoice", () => {
-  it("Should call deleteInvoiceRepository with invoice id", async () => {
-    const {sut, deleteInvoiceRepository} = makeSut();
+  it("Should call deleteInvoiceByIdRepository with invoice id", async () => {
+    const {sut, deleteInvoiceByIdRepository} = makeSut();
     await sut('any_invoice_id');
-    expect(deleteInvoiceRepository).toHaveBeenCalledWith('any_invoice_id');
-    expect(deleteInvoiceRepository).toHaveBeenCalledTimes(1);
+    expect(deleteInvoiceByIdRepository).toHaveBeenCalledWith('any_invoice_id');
+    expect(deleteInvoiceByIdRepository).toHaveBeenCalledTimes(1);
   })
 })
