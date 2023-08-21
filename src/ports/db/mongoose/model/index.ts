@@ -1,0 +1,1 @@
+export { default as InvoiceModel } from './invoice-model';

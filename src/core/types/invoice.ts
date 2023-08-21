@@ -1,9 +1,7 @@
-
 export type Job = {
   description: string;
   price: number
 }
-
 
 export type BankInfo = {
   fullName: string,
