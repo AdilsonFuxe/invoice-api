@@ -1,3 +1,6 @@
-import {start} from "@src/ports/express";
+import { start } from "@src/ports/fastify"
 
-start();
+// import {start} from "@src/ports/express";
+//
+
+start().then();
